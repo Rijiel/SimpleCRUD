@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using SimpleCRUD.UI.Models;
+using SimpleCrud.Core.Domain.Models.ViewModels;
 
 namespace SimpleCRUD.UI.Controllers
 {
