@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SimpleCrud.Core.Domain.Models.ViewModels;
 using SimpleCRUD.Core.Dto;
 using SimpleCRUD.Core.ServiceContracts;
+using SimpleCRUD.UI.Filters;
 
 namespace SimpleCRUD.UI.Controllers;
 
 [Route("[controller]/[action]")]
+[TypeFilter(typeof(LayoutDataFilter))]
 public class HomeController : Controller
 {
 	private readonly IPersonService _service;
@@ -23,10 +25,6 @@ public class HomeController : Controller
 	[Route("/")]
 	public async Task<IActionResult> Index(string? category, string? search)
 	{
-		var categoriesDictionary = new ViewDataDictionary(ViewData) { { "First Name", "FirstName" },
-			{ "Last Name", "LastName" }, { "Email", "Email" }, { "Age", "Age" }};
-
-		ViewData["Categories"] = categoriesDictionary;
 		ViewData["SelectedCategory"] = category;
 
 		IEnumerable<PersonResponse> persons = await _service.GetFilteredAsync(category, search);

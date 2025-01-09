@@ -31,16 +31,19 @@
 						<div class="d-flex">
 							<div class="me-2">
 								<select class="form-select search" name="category">
-									@foreach (var category in ViewBag.Categories)
-									{
-										if (category.Value == ViewBag.SelectedCategory){
-											<option value="@category.Value" selected>@category.Key</option>
-										}
-										else
+									@if (ViewBag.Categories != null){
+										foreach (var category in ViewBag.Categories)
 										{
-											<option value="@category.Value">@category.Key</option>
+											if (category.Value == ViewBag.SelectedCategory)
+											{
+												<option value="@category.Value" selected>@category.Key</option>
+											}
+											else
+											{
+												<option value="@category.Value">@category.Key</option>
+											}
 										}
-									}
+									}									
 								</select>
 							</div>
 
