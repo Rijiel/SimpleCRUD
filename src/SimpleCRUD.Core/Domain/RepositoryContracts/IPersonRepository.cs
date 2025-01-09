@@ -19,7 +19,7 @@ public interface IPersonRepository
 
 	Task UpdateAsync(Person person);
 
-	Task DeleteAsync(Person person);
+	Task RemoveAsync(Person person);
 
 	Task RemoveRangeAsync(IEnumerable<Person> persons);
 }

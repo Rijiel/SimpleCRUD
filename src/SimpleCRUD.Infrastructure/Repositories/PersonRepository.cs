@@ -43,7 +43,7 @@ public class PersonRepository : IPersonRepository
 		await _context.SaveChangesAsync();
 	}
 
-	public async Task DeleteAsync(Person person)
+	public async Task RemoveAsync(Person person)
 	{
 		_context.Persons.Remove(person);
 		await _context.SaveChangesAsync();
