@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SimpleCrud.Core.Domain.Models;
+using SimpleCRUD.Core.Domain.Models;
 using SimpleCRUD.Core.Domain.RepositoryContracts;
 using SimpleCRUD.Core.Dto;
 using SimpleCRUD.Core.ServiceContracts;

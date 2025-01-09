@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCrud.Core.Domain.Models;
+namespace SimpleCRUD.Core.Domain.Models;
 
 public class Person
 {

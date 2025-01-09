@@ -1,4 +1,4 @@
-namespace SimpleCrud.Core.Domain.Models.ViewModels
+namespace SimpleCRUD.Core.Domain.Models.ViewModels
 {
 	public class ErrorViewModel
 	{

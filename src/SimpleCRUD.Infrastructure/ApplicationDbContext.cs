@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleCrud.Core.Domain.Models;
+using SimpleCRUD.Core.Domain.Models;
 
 namespace SimpleCRUD.Infrastructure;
 

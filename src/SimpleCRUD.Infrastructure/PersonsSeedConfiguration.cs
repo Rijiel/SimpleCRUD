@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SimpleCrud.Core.Domain.Models;
+using SimpleCRUD.Core.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SimpleCrud.Core\SimpleCRUD.Core.csproj" />
+    <ProjectReference Include="..\SimpleCRUD.Core\SimpleCRUD.Core.csproj" />
     <ProjectReference Include="..\SimpleCRUD.Infrastructure\SimpleCRUD.Infrastructure.csproj" />
   </ItemGroup>
 

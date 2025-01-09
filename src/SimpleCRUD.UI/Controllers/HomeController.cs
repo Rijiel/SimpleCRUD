@@ -2,7 +2,7 @@ using System.Diagnostics;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using SimpleCrud.Core.Domain.Models.ViewModels;
+using SimpleCRUD.Core.Domain.Models.ViewModels;
 using SimpleCRUD.Core.Dto;
 using SimpleCRUD.Core.ServiceContracts;
 using SimpleCRUD.UI.Filters;
