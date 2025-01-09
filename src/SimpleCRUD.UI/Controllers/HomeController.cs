@@ -1,32 +1,86 @@
 using System.Diagnostics;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCrud.Core.Domain.Models.ViewModels;
+using SimpleCRUD.Core.Dto;
+using SimpleCRUD.Core.ServiceContracts;
 
-namespace SimpleCRUD.UI.Controllers
+namespace SimpleCRUD.UI.Controllers;
+
+[Route("[controller]/[action]")]
+public class HomeController : Controller
 {
-    public class HomeController : Controller
-    {
-        private readonly ILogger<HomeController> _logger;
+	private readonly IPersonService _service;
+	private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+	public HomeController(IPersonService service, IMapper mapper)
+	{
+		_service = service;
+		_mapper = mapper;
+	}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+	[Route("/")]
+	public async Task<IActionResult> Index()
+	{
+		IEnumerable<PersonResponse> persons = await _service.GetAllAsync();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+		return View(persons);
+	}
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-    }
+	[HttpGet]
+	public IActionResult Create() => View();
+
+	[HttpPost]
+	public async Task<IActionResult> Create(PersonAddRequest request)
+	{
+		await _service.AddAsync(request);
+
+		return RedirectToAction(nameof(Index));
+	}
+
+	[HttpGet("{id?}")]
+	public async Task<IActionResult> Edit(int? id)
+	{
+		PersonResponse? person = await _service.GetAsync(x => x.Id == id);
+		if (person == null)
+		{
+			return NotFound();
+		}
+
+		return View(_mapper.Map<PersonUpdateRequest>(person));
+	}
+
+	[HttpPost("{id?}")]
+	public async Task<IActionResult> Edit(PersonUpdateRequest request)
+	{
+		await _service.UpdateAsync(request);
+
+		return RedirectToAction(nameof(Index));
+	}
+
+	[HttpGet("{id?}")]
+	public async Task<IActionResult> Delete(int? id)
+	{
+		PersonResponse? person = await _service.GetAsync(x => x.Id == id);
+		if (person == null)
+		{
+			return NotFound();
+		}
+
+		return View(person);
+	}
+
+	[HttpPost("{id?}")]
+	public async Task<IActionResult> Delete(PersonResponse request)
+	{
+		await _service.RemoveAsync(request.Id);
+
+		return RedirectToAction(nameof(Index));
+	}
+
+	[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+	public IActionResult Error()
+	{
+		return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+	}
 }

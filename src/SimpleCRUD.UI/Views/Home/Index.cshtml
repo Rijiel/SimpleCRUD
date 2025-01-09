@@ -1,8 +1,24 @@
-﻿@{
+﻿@model IEnumerable<PersonResponse>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row">
+    @foreach (var person in Model){
+		<div class="col-4">
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title">Name: @(person.FirstName + " " + person.LastName)</h5>
+					<h6 class="card-subtitle mb-2 text-muted">Age: @person.Age</h6>
+					<p class="card-text">Email: @person.Email</p>
+					<div class="d-flex justify-content-center gap-3">
+						<a asp-action="Delete" asp-route-id="@person.Id" class="btn btn-danger">Delete</a>
+						<a asp-action="Edit" asp-route-id="@person.Id" class="btn btn-primary">Edit</a>
+					</div>
+				</div>
+			</div>
+		</div>
+    }
+
+	<a asp-action="Create" class="btn btn-primary">Create</a>
 </div>
