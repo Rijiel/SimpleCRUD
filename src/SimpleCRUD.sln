@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCrud.Core", "SimpleCr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleCRUD.Infrastructure", "SimpleCRUD.Infrastructure\SimpleCRUD.Infrastructure.csproj", "{F9096442-0617-4ACD-80A6-4DBAE3EB99CA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CFF33A9C-E0F0-4D41-AE46-375A91C7C68E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C06BCAE5-FAA9-46D7-8DD3-7ABAA1D4F1F9} = {CFF33A9C-E0F0-4D41-AE46-375A91C7C68E}
+		{A79BE4A7-DE3E-485F-B8BB-EFD4A675239C} = {CFF33A9C-E0F0-4D41-AE46-375A91C7C68E}
+		{F9096442-0617-4ACD-80A6-4DBAE3EB99CA} = {CFF33A9C-E0F0-4D41-AE46-375A91C7C68E}
 	EndGlobalSection
 EndGlobal
