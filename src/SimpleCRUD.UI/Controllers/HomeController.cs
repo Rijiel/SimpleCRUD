@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using SimpleCrud.Core.Domain.Models.ViewModels;
 using SimpleCRUD.Core.Dto;
 using SimpleCRUD.Core.ServiceContracts;
@@ -20,9 +21,15 @@ public class HomeController : Controller
 	}
 
 	[Route("/")]
-	public async Task<IActionResult> Index()
+	public async Task<IActionResult> Index(string? category, string? search)
 	{
-		IEnumerable<PersonResponse> persons = await _service.GetAllAsync();
+		var categoriesDictionary = new ViewDataDictionary(ViewData) { { "First Name", "FirstName" },
+			{ "Last Name", "LastName" }, { "Email", "Email" }, { "Age", "Age" }};
+
+		ViewData["Categories"] = categoriesDictionary;
+		ViewData["SelectedCategory"] = category;
+
+		IEnumerable<PersonResponse> persons = await _service.GetFilteredAsync(category, search);
 
 		return View(persons);
 	}

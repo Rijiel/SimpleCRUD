@@ -12,6 +12,8 @@ public interface IPersonService
 {
 	Task<List<PersonResponse>> GetAllAsync(Expression<Func<Person, bool>>? expression = null);
 
+	Task<List<PersonResponse>> GetFilteredAsync(string? category, string? search);
+
 	Task<PersonResponse?> GetAsync(Expression<Func<Person, bool>> expression, bool tracked = false);
 
 	Task<PersonResponse> AddAsync(PersonAddRequest? request);

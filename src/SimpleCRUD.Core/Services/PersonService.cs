@@ -29,6 +29,30 @@ public class PersonService : IPersonService
 		return _mapper.Map<List<PersonResponse>>(persons);
 	}
 
+	public async Task<List<PersonResponse>> GetFilteredAsync(string? category, string? search)
+	{
+		if (string.IsNullOrEmpty(search)) return await GetAllAsync();
+
+		IEnumerable<Person> persons = (category) switch
+		{
+			nameof(Person.FirstName)
+				=> await _repository.GetAllAsync(x => x.FirstName.Contains(search!)),
+
+			nameof(Person.LastName)
+				=> await _repository.GetAllAsync(x => x.LastName.Contains(search!)),
+
+			nameof(Person.Email)
+				=> await _repository.GetAllAsync(x => x.Email!.Contains(search!)),
+
+			nameof(Person.Age)
+			=> await _repository.GetAllAsync(x => x.Age.ToString().Contains(search!)),
+
+			_ => await _repository.GetAllAsync()
+		};
+
+		return _mapper.Map<List<PersonResponse>>(persons);
+	}
+
 	public async Task<PersonResponse?> GetAsync(Expression<Func<Person, bool>> expression, bool tracked = false)
 	{
 		Person? person = await _repository.GetAsync(expression, tracked);
